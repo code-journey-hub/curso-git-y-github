@@ -166,3 +166,16 @@ La consola nos mostrará un listado de archivos y directorios presentes en la ru
 1. Navega por el proyecto utilizando el comando `ls` para ver qué encuentras en cada directorio.
 1. Utiliza la opción de ayuda (`ls --help`) para saber más sobre este útil comando. Prueba alguna de las opciones que te muestre el output.
 1. Si no lo has hecho todavía, prueba el comando `ls` con la opción `-a` para mostrar todos los archivos y directorios, incluidos los ocultos. Esta es una de las opciones más utilizadas junto con el comando ls.
+
+## Trabajando con archivos
+
+## Cómo seguir aprendiendo
+
+Como siempre, seguir aprendiendo, profundizando y mantenerte al día depende de ti. Busca en Internet para encontrar recursos y comunidades especializadas. En este caso, te recomiendo que utilices también estos recursos:
+
+1. [Command Challenge](https://cmdchallenge.com/): uno de los recursos más utilizados, con retos y respuestas para que puedas profundizar en el uso de la terminal. No te preocupes si hay retos que te parecen complicados, algunos de ellos requerirían que incluso gente con años de experiencia utilizara documentación para resolverlos.
+1. [Over The Wire - Bandit](https://overthewire.org/wargames/bandit/bandit0.html): aunque la colección de Over The Wire está orientada a seguridad, este primer juego puede ayudarte a asentar conocimientos sobre cómo utilizar la consola.
+
+### ¿Conoces alguna otra fuente de interés?
+
+¡[Abre un issue](https://github.com/code-journey-hub/curso-git-y-github/issues/new) en nuestro repositorio e infórmanos para que podamos evaluar tus recursos y propuestas!
