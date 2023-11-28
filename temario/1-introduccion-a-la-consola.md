@@ -86,7 +86,7 @@ Si queremos volver a nuestra ubicación inicial, deberemos escribir la ruta que 
 
 El problema de esta forma de navegación es que, si queremos acceder a una carpeta muy anidada, la ruta que tendremos que escribir es muy larga. Para estos casos podemos utilizar las _rutas relativas_. Por ejemplo, fíjate en mi estructura de archivos actual:
 
-![Alt text](/assets/imgs/cd-4.png)
+![Estructura de archivos](/assets/imgs/cd-4.png)
 
 En este caso, si quisiera entrar a mi carpeta de imágenes tendría que utilizar el siguiente comando:
 
@@ -109,3 +109,60 @@ En el ejemplo de arriba, si quiero llegar a la carpeta de imágenes desde donde 
 ```
 cd assets/imgs
 ```
+
+![Rutas relativas](/assets/imgs/cd-5.png)
+
+### Shortcuts
+
+Existen algunos atajos de teclado a la hora de utilizar rutas. Entre ellos, los más interesantes son `.` y `..`. Ambos se utilizan para elaborar rutas relativas.
+
+`..` hace referencia al directorio padre del actual. Puede ser útil para volver atrás. Por ejemplo, desde donde estamos podemos volver a la carpeta `assets` con este comando:
+
+```
+cd ..
+```
+
+![shortcut ..](/assets/imgs/cd-6.png)
+
+Al volverlo a utilizar volveríamos a la carpeta `curso-git-y-github`, que es la raíz de nuestro proyecto (ya que todos los archivos relativos al curso se encuentran dentro), aunque no de nuestra máquina (ya que necesita de otros archivos para funcionar, ubicados en las carpetas superiores).
+
+Por su parte, `.` hace referencia al directorio actual. Por tanto, estos dos comandos son equivalentes:
+
+```
+cd assets/imgs
+```
+
+```
+cd ./assets/imgs
+```
+
+![shortcut .](/assets/imgs/cd-7.png)
+
+#### Prácticas
+
+1. Utiliza el comando de navegación cd para repetir todos los pasos que hemos ido dando, usando tanto rutas absolutas como rutas relativas.
+
+### ¿Qué hay en mi ubicación?
+
+Al trabajar en un codespace tenemos acceso a una representación visual del sistema de archivos:
+
+![Estructura de archivos](/assets/imgs/cd-4.png)
+
+Pero lo más frecuente al trabajar con la CLI es que no dispongamos de este tipo de ayudas gráficas. En esos casos, ¿cómo podemos saber qué archivos hay en nuestra ubicación?
+
+Para explorar el proyecto podemos utilizar el comando `ls`:
+
+```
+cd /workspaces/curso-git-y-github/assets/imgs
+ls
+```
+
+![Comando ls](/assets/imgs/cd-8.png)
+
+La consola nos mostrará un listado de archivos y directorios presentes en la ruta actual.
+
+#### Prácticas
+
+1. Navega por el proyecto utilizando el comando `ls` para ver qué encuentras en cada directorio.
+1. Utiliza la opción de ayuda (`ls --help`) para saber más sobre este útil comando. Prueba alguna de las opciones que te muestre el output.
+1. Si no lo has hecho todavía, prueba el comando `ls` con la opción `-a` para mostrar todos los archivos y directorios, incluidos los ocultos. Esta es una de las opciones más utilizadas junto con el comando ls.
