@@ -11,7 +11,7 @@ De modo que en esta introducción vamos a hablar de los conceptos fundamentales 
 
 1. Navega hasta el repositorio que he creado para trabajar el tema: [Curso de git y github](https://github.com/code-journey-hub/curso-git-y-github).
 1. Ahora abre un codespace, siguiendo la ruta Code > Codespaces > Abrir en Codespaces.
-   ![como crear un codespace](/assets/imgs/codespaces-path.jpg)
+   ![como crear un codespace](/assets/imgs/1/codespaces-path.jpg)
 1. Sigue las instrucciones que encontrarás a lo largo del curso, bajo los apartados "Prácticas".
 
 ## ¿Por qué utilizamos la consola?
@@ -62,7 +62,7 @@ Por ejemplo, si quiero abrir una foto que está en mi carpeta personal utilizand
 
 Pues bien, el CLI no es muy diferente. Al utilizar esta interfaz, lo primero que encontramos es un cursor, que nos indica el lugar en el que nos ubicamos. En este ejemplo, nos encontramos en la ruta /workspaces/curso-git-y-github:
 
-![Cursor de la terminal](/assets/imgs/cursor.png)
+![Cursor de la terminal](/assets/imgs/1/cursor.png)
 
 En este ejemplo verás que al principio del cursor nos está indicando, además, qué usuario está activo (agarzon48) y al final nos indica en qué rama del repositorio nos encontramos (main). No es necesario que entiendas esto todavía, profundizaremos más adelante.
 
@@ -74,19 +74,19 @@ En este ejemplo verás que al principio del cursor nos está indicando, además,
 
 Ya sabes que con el comando `pwd` puedes imprimir tu ubicación actual. Si quieres cambiar esta ubicación, utiliza el comando `cd` (change directory), seguido de la ruta a la que quieras moverte.
 
-![Uso básico del comando cd](/assets/imgs/cd.png)
+![Uso básico del comando cd](/assets/imgs/1/cd.png)
 
 Si te fijas, al principio de la ruta de destino hemos utilizado una barra. Esta barra representa la raíz de nuestro sistema de archivos. Es decir, el directorio dentro del cual se encuentran el resto de directorios. Se trata de una ruta válida, y podemos visitarla:
 
-![Para volver a la raíz podemos utilizar cd /](/assets/imgs/cd-2.png)
+![Para volver a la raíz podemos utilizar cd /](/assets/imgs/1/cd-2.png)
 
 Si queremos volver a nuestra ubicación inicial, deberemos escribir la ruta que nos conduce a ella desde la raíz del proyecto:
 
-![Volver a la ruta original](/assets/imgs/cd-3.png)
+![Volver a la ruta original](/assets/imgs/1/cd-3.png)
 
 El problema de esta forma de navegación es que, si queremos acceder a una carpeta muy anidada, la ruta que tendremos que escribir es muy larga. Para estos casos podemos utilizar las _rutas relativas_. Por ejemplo, fíjate en mi estructura de archivos actual:
 
-![Estructura de archivos](/assets/imgs/cd-4.png)
+![Estructura de archivos](/assets/imgs/1/cd-4.png)
 
 En este caso, si quisiera entrar a mi carpeta de imágenes tendría que utilizar el siguiente comando:
 
@@ -110,7 +110,7 @@ En el ejemplo de arriba, si quiero llegar a la carpeta de imágenes desde donde 
 cd assets/imgs
 ```
 
-![Rutas relativas](/assets/imgs/cd-5.png)
+![Rutas relativas](/assets/imgs/1/cd-5.png)
 
 ### Shortcuts
 
@@ -122,7 +122,7 @@ Existen algunos atajos de teclado a la hora de utilizar rutas. Entre ellos, los 
 cd ..
 ```
 
-![shortcut ..](/assets/imgs/cd-6.png)
+![shortcut ..](/assets/imgs/1/cd-6.png)
 
 Al volverlo a utilizar volveríamos a la carpeta `curso-git-y-github`, que es la raíz de nuestro proyecto (ya que todos los archivos relativos al curso se encuentran dentro), aunque no de nuestra máquina (ya que necesita de otros archivos para funcionar, ubicados en las carpetas superiores).
 
@@ -136,7 +136,7 @@ cd assets/imgs
 cd ./assets/imgs
 ```
 
-![shortcut .](/assets/imgs/cd-7.png)
+![shortcut .](/assets/imgs/1/cd-7.png)
 
 #### Prácticas
 
@@ -146,7 +146,7 @@ cd ./assets/imgs
 
 Al trabajar en un codespace tenemos acceso a una representación visual del sistema de archivos:
 
-![Estructura de archivos](/assets/imgs/cd-4.png)
+![Estructura de archivos](/assets/imgs/1/cd-4.png)
 
 Pero lo más frecuente al trabajar con la CLI es que no dispongamos de este tipo de ayudas gráficas. En esos casos, ¿cómo podemos saber qué archivos hay en nuestra ubicación?
 
@@ -157,7 +157,7 @@ cd /workspaces/curso-git-y-github/assets/imgs
 ls
 ```
 
-![Comando ls](/assets/imgs/cd-8.png)
+![Comando ls](/assets/imgs/1/cd-8.png)
 
 La consola nos mostrará un listado de archivos y directorios presentes en la ruta actual.
 
@@ -177,11 +177,11 @@ touch <ruta del archivo>
 
 Como ves, el comando `touch` nos va a pedir una ruta en la que crear el archivo. Ten en cuenta que esta ruta incluirá el nombre del archivo.
 
-![touch my_file.pdf](/assets/imgs/cd-9.png)
+![touch my_file.pdf](/assets/imgs/1/cd-9.png)
 
 Si necesitamos incluir un espacio en el nombre de nuestro archivo tendremos que escribirlo entre comillas. Piensa que, en caso contrario, la máquina no tiene forma de saber que el nombre de nuestro fichero tiene espacios, así que entenderá que estamos pasando varios parámetros u opciones, y normalmente terminaremos creando varios archivos a la vez.
 
-![usando el comando touch con espacios en el nombre del archivo](/assets/imgs/cd-10.png)
+![usando el comando touch con espacios en el nombre del archivo](/assets/imgs/1/cd-10.png)
 
 A la hora de eliminar un archivo podemos utilizar el comando `rm` (remove), seguido de la ruta del archivo a eliminar:
 
@@ -203,7 +203,7 @@ mv <ruta del archivo que queremos mover> <ruta donde queremos colocar el archivo
 
 Ten en cuenta que si quieres renombrar un archivo puedes utilizar este comando, modificando únicamente la parte final de la ruta (el propio nombre del archivo).
 
-![Utilizando el comando mv para renombrar un archivo](/assets/imgs/cd-11.png)
+![Utilizando el comando mv para renombrar un archivo](/assets/imgs/1/cd-11.png)
 
 Por último, existen modos de leer el contenido de un archivo directamente desde la terminal (como el comando `cat`) o de abrir editores (como `nano`, `vi` o, si contamos con Visual Studio Code, el comando `code`).
 
@@ -242,7 +242,7 @@ cp -r <ruta del directorio>
 
 A continuación te dejo una captura de pantalla con el uso de los comandos comentados, donde se han provocado algunos de los errores de los que hemos hablado para que te vayas familiarizando con ellos:
 
-![Jugando con los comandos de directorios](/assets/imgs/cd-12.png)
+![Jugando con los comandos de directorios](/assets/imgs/1/cd-12.png)
 
 ### Prácticas
 
