@@ -169,7 +169,86 @@ La consola nos mostrará un listado de archivos y directorios presentes en la ru
 
 ## Trabajando con archivos
 
-## Cómo seguir aprendiendo
+Ya sabemos navegar por nuestro sistema de archivos, así que ahora solo nos queda aprender cómo manipular nuestros ficheros y directorios. A la hora de trabajar con ficheros, existen diferentes formas de crear un archivo. Probablemente, la más popular y fácil de aprender sea usando el comando `touch`:
+
+```
+touch <ruta del archivo>
+```
+
+Como ves, el comando `touch` nos va a pedir una ruta en la que crear el archivo. Ten en cuenta que esta ruta incluirá el nombre del archivo.
+
+![touch my_file.pdf](/assets/imgs/cd-9.png)
+
+Si necesitamos incluir un espacio en el nombre de nuestro archivo tendremos que escribirlo entre comillas. Piensa que, en caso contrario, la máquina no tiene forma de saber que el nombre de nuestro fichero tiene espacios, así que entenderá que estamos pasando varios parámetros u opciones, y normalmente terminaremos creando varios archivos a la vez.
+
+![usando el comando touch con espacios en el nombre del archivo](/assets/imgs/cd-10.png)
+
+A la hora de eliminar un archivo podemos utilizar el comando `rm` (remove), seguido de la ruta del archivo a eliminar:
+
+```
+rm <ruta del archivo>
+```
+
+Y si lo que queremos es hacer una copia utilizaremos el comando `cp` (copy) seguido de la ruta del archivo de origen y la ruta del archivo de destino:
+
+```
+cp <ruta del archivo que queremos copiar> <ruta donde queremos el nuevo archivo>
+```
+
+También disponemos del comando `mv` (move) para cambiar un archivo de ubicación:
+
+```
+mv <ruta del archivo que queremos mover> <ruta donde queremos colocar el archivo>
+```
+
+Ten en cuenta que si quieres renombrar un archivo puedes utilizar este comando, modificando únicamente la parte final de la ruta (el propio nombre del archivo).
+
+![Utilizando el comando mv para renombrar un archivo](/assets/imgs/cd-11.png)
+
+Por último, existen modos de leer el contenido de un archivo directamente desde la terminal (como el comando `cat`) o de abrir editores (como `nano`, `vi` o, si contamos con Visual Studio Code, el comando `code`).
+
+### Prácticas
+
+1. Utiliza todos los comandos que hemos aprendido para practicar con ellos. Te recomiendo que crees archivos con el comando `code` y que lances los comandos con la opción `--help` para aprender más sobre ellos. Utiliza, al menos, los siguientes comandos:
+   1. `touch`
+   1. `rm`
+   1. `cp`
+   1. `mv`
+   1. `cat`
+
+## Trabajando con ficheros
+
+Los ficheros o carpetas nos sirven para organizar nuestros archivos. Mientras un archivo contiene información, la carpeta simplemente agrupa ficheros. Esto hace que los comandos que utilizamos con los archivos no sirvan para las carpetas.
+
+Así, para crear una carpeta necesitaremos utilizar el comando `mkdir` (make directory):
+
+```
+cp <ruta del directorio>
+```
+
+Si queremos mover o renombrar la carpeta podemos utilizar el comando `mv`, como si se tratara de un fichero. Sin embargo, la copia y eliminación de directorios funciona de un modo particular.
+
+Podemos eliminar un directorio vacío con el comando `rmdir`, seguido de la ruta del directorio a eliminar. Pero cuando el directorio tenga contenidos (otros archivos o directorios dentro) tendremos que utilizar el comando `rm` de forma recursiva (para que elimine también todo el contenido de la carpeta):
+
+```
+rm -rf <ruta del directorio>
+```
+
+También debemos utilizar la estrategia recursiva cuando queramos copiar un directorio con contenidos:
+
+```
+cp -r <ruta del directorio>
+```
+
+A continuación te dejo una captura de pantalla con el uso de los comandos comentados, donde se han provocado algunos de los errores de los que hemos hablado para que te vayas familiarizando con ellos:
+
+![Jugando con los comandos de directorios](/assets/imgs/cd-12.png)
+
+### Prácticas
+
+1. Utiliza todos los comandos que hemos aprendido para practicar con ellos. Juega no solo con los directorios, sino también con archivos. Trata de provocar errores para familiarizarte con el output de la consola (¡cuidado con el comando `rm -rf`!).
+
+## Próximos pasos
 
 Como siempre, seguir aprendiendo, profundizando y mantenerte al día depende de ti. Busca en Internet para encontrar recursos y comunidades especializadas. En este caso, te recomiendo que utilices también estos recursos:
 
