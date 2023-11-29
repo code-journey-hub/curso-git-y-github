@@ -255,8 +255,8 @@ Dado que respeta el historial previo, suele ser preferible a `git reset`, especi
 
 ## Ramas
 
-checkout
 branch
+checkout
 switch
 merge
 
