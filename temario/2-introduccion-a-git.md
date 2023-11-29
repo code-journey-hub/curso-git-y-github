@@ -71,6 +71,12 @@ Si te fijas en el outputde la consola, verás que encontramos una carpeta oculta
 
 ### La carpeta .git
 
+Nunca debemos manipular manualmente la carpeta .git o sus contenidos, ya que es el propio programa el que se va a encargar de gestionarlos. De hecho, si eliminamos el directorio y lanzamos un `git status` comprobaremos que acabamos de eliminar el repo.
+
+Sin embargo, me interesa analizar someramente su contenido antes de seguir, para que entiendas que toda la información relativa al repositorio está aquí dentro. Si inspeccionas los archivos de dentro del directorio `.git` verás ficheros como config o description que, obviamente, contienen la configuración del repositorio o su descripción. También encontrarás un archivo que define el HEAD, que te explicaré más adelante.
+
+Por último, encontraremos directorios donde podemos almacenar diferentes tipos de objetos. Hay cuatro tipo de objetos en un repo: Blob (almacenamiento de archivos), Tree (almacenamiento de directorios), Commit, Annotated Tag (almacenamiento de anotaciones de texto). Ahora mismo solo nos interesa el commit, que explicaremos más adelante.
+
 ### ¿Dónde debo crear mi repositorio?
 
 El repositorio admite directorios anidados. De modo que a la hora de lanzar `git init` debemos asegurarnos de estar en la raíz de nuestro proyecto. Es decir, en la carpeta más alta jerárquicamente.
@@ -208,6 +214,13 @@ Este comando también nos sirve para quitar del staging area archivos que hayamo
 git restore --staged <file-name>
 ```
 
+#### Prácticas
+
+1. Haz cambios en, al menos, dos archivos diferentes.
+1. Añade uno de ellos al staging area.
+1. Ahora sácalo del staging area.
+1. Devuelve los archivos a su estado original.
+
 ### git reset
 
 `git reset` solicitará que indiquemos un commit objetivo, y restaurará el repo al estado de ese comit eliminando los posteriores:
@@ -220,11 +233,25 @@ Ten en cuenta que `git reset` afectará al repo, pero no necesariamente a nuestr
 
 Se trata, por tanto, de una forma de echar atrás uno o varios commits, pero puede ser destructivo si no se utiliza con cuidado.
 
+#### Prácticas
+
+1. Edita el contenido de un archivo y realiza el flujo `add` - `commit` varias veces para añadir varios commits a tu repo.
+1. Revisa tu historial con `git log --oneline`.
+1. Elige uno de tus commits anteriores y devuelve el repo a su estado. Asegúrate de que también cambia el árbol de trabajo.
+1. Vuelve a lanzar `git log --oneline`
+
 ### git revert
 
 `git revert` cumple un objetivo similar a `git reset`, ya que indicaremos un commit que queremos revertir. Sin embargo, no eliminaremos los commits posteriores, como ocurre con git reset, sino que crearemos un nuevo commit que deshaga los cambios realizados desde el commit seleccionado.
 
 Dado que respeta el historial previo, suele ser preferible a `git reset`, especialmente cuando estamos trabajando en equipo.
+
+#### Prácticas
+
+1. Edita el contenido de un archivo y realiza el flujo `add` - `commit` varias veces para añadir varios commits a tu repo.
+1. Revisa tu historial con `git log --oneline`.
+1. Elige uno de tus commits anteriores y devuelve el repo a su estado. Asegúrate de que también cambia el árbol de trabajo.
+1. Vuelve a lanzar `git log --oneline`
 
 ## Ramas
 
