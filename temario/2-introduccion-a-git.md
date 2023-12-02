@@ -255,18 +255,174 @@ Dado que respeta el historial previo, suele ser preferible a `git reset`, especi
 
 ## Ramas
 
-branch
-checkout
-switch
-merge
+Como hemos visto, un repositorio de git es un histórico de commits, que son representaciones de cómo era nuestro repositorio en el momento de ejecutar el comando `git commit -m 'nombre del commit`. También hemos visto que gracias a que vamos guardando estas "instantáneas", podemos "viajar atrás en el tiempo".
+
+Esto se de debe a que todos los commits (salvo el inicial) guardan una referencia al commit anterior. De modo que si seguimos esta referencia podemos ir dando pasos atrás, hasta llegar al primer commit de nuestro repositorio. Además, cada commit tiene un hash que, como hemos visto, podemos consultar con `git log` y utilizar para viajar hasta él con `git checkout`.
+
+Entender esta estructura nos lleva a los conceptos de HEAD y branch (rama). Una rama es una versión alternativa de nuestro proyecto. Por ejemplo, imagina que estás diseñando una interfaz y tienes que desarrollar una propuesta en esquema de color oscuro y otra en esquema de color claro, para que la dirección del proyecto elija la que más le guste. En este caso estamos hablando de dos versiones diferentes del proyecto, y git nos permite trabajar en ellas simultáneamente.
+
+Para ello crearemos ramas, cosa que podemos hacer con el comando `git branch`. Lo cierto es que también podemos hacerlo con `git checkout`, que es como se ha hecho tradicionalmente, pero las últimas versiones de git incorporaron comandos como `restore` o `branch` para evitar el uso de comandos multiuso como `checkout`.
+
+```
+git branch <nombre-de-la-rama>
+```
+
+Con este comando podemos crear una rama para la versión oscura y otra rama para la versión clara de nuestro proyecto. Cada rama representará una versión del código, y los cambios que hagamos en una rama no afectarán a la otra.
+
+Este es el modo en que se trabaja en la mayoría de estudios, proyectos y empresas. Cada característica que se va a añadir al proyecto se desarrolla en una rama, lo que permite que el resto de personas que estén utilizando el proyecto o trabajando en él lo hagan sin que les afecten los nuevos cambios.
+
+Una vez creada la rama podemos cambiar a ella con el comando `switch`:
+
+```
+git branch version-clara
+git switch version-clara
+```
+
+Este comando es equivalente al clásico
+
+```
+git checkout <nombre-de-la-rama>
+```
+
+También podemos hacer ambos pasos si al comando `branch` le pasamos la opción `create`:
+
+```
+git switch -c version-clara
+```
+
+Al crear una nueva rama, podremos trabajar una versión alternativa del código. En cuanto estemos satisfechos con nuestro trabajo y queramos hacerlo oficial, deberemos llevar todos los cambios que hemos hecho a la rama principal, habitualmente conocida como `main` o `master`. Para ello tendremos que seguir dos pasos:
+
+1. En primer lugar, iremos a la rama de destino. En este ejemplo, `main`:
+
+```
+git switch main
+```
+
+2. En segundo lugar, indicaremos la rama cuyos cambios queremos hacer oficiales:
+
+```
+git merge version-clara
+```
+
+Esto permite a cada desarrollador o desarrolladora trabajar en una rama separada, o bien reservar ramas para cada característica del código, de modo que solo se unan cuando el trabajo haya terminado y sea estable.
+
+Una vez terminado el trabajo en una rama conviene eliminarla:
+
+```
+git branch -D <nombre-de-la-rama>
+```
+
+Recuerda que en todo momento puedes utilizar el comando `branch` para ver en qué rama estás y qué ramas hay disponibles.
+
+```
+git branch
+```
+
+### HEAD
+
+Anteriormente hemos hablado del concepto HEAD, y ahora ya sabes todo lo que necesitas para entenderlo. Conocemos HEAD como el lugar "en el que nos encontramos".
+
+Por ejemplo, hemos hablado de las ramas y hemos dicho que podemos tener una rama dedicada a un tema oscuro y otra dedicada a un tema claro. Pero... ¿Cuál de los temas se mostrará en pantalla?
+
+Pues bien, si mi HEAD está en la rama del tema oscuro, se mostrará el tema oscuro. Si está en la rama del tema claro, se mostrará el tema claro. Y si está en un commit hecho hace dos meses, se mostrará la versión del código que hubiera hace dos meses.
+
+Así que puedes entender el HEAD como un puntero. Si entiendes cada commit como una especie de marcapáginas en un libro, el HEAD es la página que has elegido para que esté abierta. Del mismo modo que en un libro tienes que elegir qué página abres, en un repositorio tienes que elegir qué código forma parte de tu árbol de trabajo.
 
 ## Trabajo colaborativo (servidores locales)
 
-remote
-push
-fetch
-pull
-PR
+Ahora sabes cómo mantener diferentes versiones de tu código. Puede que todavía no entiendas la utilidad, pero con el tiempo y la práctica verás que es muy conveniente contar con entornos aislados en los que hacer cambios, para que si algo se rompe no afecte al resto del proyecto. Y eso es una rama.
+
+Además, disponer de varias versiones del código permite que cada desarrollador tenga una versión aislada. Lo cual facilita el trabajo en equipo. A la hora de desarrollar o mantener un proyecto, cada partícipe o equipo podrá trabajar en una funcionalidad, poniéndola en común una vez haya terminado.
+
+Esto significa que todo el equipo estará compartiendo un repositorio. De modo que tendremos:
+
+1. El repositorio local, donde estamos haciendo nuestros cambios.
+1. El repositorio remoto, donde enviaremos nuestros cambios una vez sean definitivos, o desde donde traeremos los cambios de nuestros compañeros y compañeras.
+
+La gestión del repositorio remoto se hace con la herramienta `remote`. Por ejemplo, si queremos ver a qué repositorios remotos está conectado nuestro repositorio local podemos lanzar:
+
+```
+git remote -v
+```
+
+Si nuestro repositorio local no está conectado con ningún repositorio remoto, podremos conectarlo utilizando:
+
+```
+git remote add <nombre-del-remoto> <direccion-del-repositorio>
+```
+
+Como ves, a la hora de crear una conexión debemos ponerle un nombre. Normalmente se llama origin al repositorio principal. Este nombre es libre, ya que funciona simplemente como una etiqueta, para que identifiquemos el remoto. También necesitamos una dirección donde ubicar el repositorio remoto, que puede radicar en nuestra propia máquina, en la red local o estar en un servicio remoto tipo github, gitlab o similar.
+
+También podemos eliminar remotos con:
+
+```
+git remote rm <nombre-del-remoto>
+```
+
+O cambiarlos con:
+
+```
+git remote set-url <nombre-del-remoto> <direccion-del-nuevo-repositorio>
+```
+
+### Cómo trabajamos en equipo
+
+Cuando trabajamos en equipo, cada integrante del equipo tendrá su repo local y los cambios se enviarán y recogerán del repo común. Para saber si ha habido cambios en el repo común desde que nos conectamos por última vez podemos utilizar:
+
+```
+git fetch
+```
+
+Ten en cuenta que si varias personas o equipos trabajamos en el mismo proyecto, es probable que mientras yo estoy desarrollando una funcionalidad otros compañeros y compañeras hayan terminado de desarrollar otras. En este caso habrán enviado sus cambios al repo común, y yo tendré que conectarme para actualizarme con esos cambios. `fetch` me indicará si ha habido cambios. En caso afirmativo, para descarlarlos utilizaré el siguiente comando:
+
+```
+git pull
+```
+
+`pull` es el comando que indica que queremos "traernos" cambios. En este caso, queremos traer los cambios que nuestros compañeros han hecho en el repo remoto al repo local.
+
+Si lo que queremos hacer es subir cambios, lo haremos con el comando `push`. Lo que pasa es que si creamos una rama en local, que no existe en el remoto, y queremos guardar los cambios en el remoto, lo primero que tendremos que hacer es crear una rama homónima en el repo remoto.
+
+Para ello vamos a ejecutar el comando:
+
+```
+git push <nombre-del-remoto> <nombre-de-la-rama>
+```
+
+Esto se puede volver molesto. Imagina que nuestro remoto se llama "origin" y la rama sobre la que estamos trabajando se llama "feature/dark-theme". Esto significa que cada vez que queramos guardar cambios en el repo remoto tendremos que ejecutar el siguiente comando:
+
+```
+git push origin feature/dark-theme
+```
+
+Pero, si siempre vamos a subir los cambios al mismo remoto y en la rama en la que estamos trabajando, ¿no sería mejor que el comando fuera simplemente `git push`?
+
+En realidad podemos hacerlo. Siempre que antes establezcamos una conexión entre nuestra rama y la rama del remoto a la que queremos subir nuestros cambios. Para ello utilizamos el siguiente comando:
+
+```
+git push -u origin feature/dark-theme
+```
+
+-u es la abreviación de `--set-upstream-to`, y lo que indica es que, a partir de este momento, siempre que lancemos `git push` desde esa rama queremos que los cambios suban a la rama "feature/dark-theme" del repositorio "origin".
+
+### Pull Request
+
+Generalmente, cuando trabajamos en equipo no es buena idea tirar de `push` directamente. Esto se debe a que provocaremos cambios en el repo principal, lo que puede llevar a que:
+
+1. Cometamos errores, introduciendo bugs, incorrecciones o código "sucio" en la versión oficial de nuestro proyecto.
+1. Introduzcamos cambios de los que no son conscientes nuestros compañeros y compañeras.
+
+Al trabajar en equipo suele ser mejor que todo el equipo participe en la revisión del código y su incorporación al proyecto oficial. De hecho, es probable que haya personas encargadas de revisar la corrección de nuestro código, y que este no pueda incorporarse a la versión oficial sin su visto bueno.
+
+En estos casos utilizamos la herramienta conocida como `pull request`: no incorporamos nuestros cambios al repo oficial, sino que pedimos al repo oficial que incorpore nuestros cambios:
+
+```
+git request-pull <commit-inicial> <destino> <commit-final>
+```
+
+Si en lugar de empujar nuestros cambios solicitamos su incorporación, damos a nuestros compañeros y compañeras la oportunidad de revisar nuestro código antes de hacerlo público.
+
+Los pull request también se pueden utilizar cuando trabajamos en solitario, ya que van a generar un informe con los cambios que hay entre los commits inicial y final, lo cual nos permite revisar el código que vamos a incorporar al proyecto. Sin embargo, lo cierto es que donde más peso tienen es en el desarrollo colaborativo. Y para entenderlo conviene que nos adentremos en el uso de herramientas como github.
 
 ## Próximos pasos
 
